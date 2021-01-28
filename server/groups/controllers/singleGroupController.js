@@ -5,10 +5,6 @@ async function getGroup(request){
     return lookForGroup(id);
 }
 
-async function postGroup(request){
-    // return addGroup(request.body)
-}
-
 async function deleteGroup(request){
     const id = request.params.Id;
     return removeGroup(id);
@@ -23,7 +19,6 @@ async function updateGroup(request){
 
 export{
     getGroup,
-    postGroup,
     updateGroup,
     deleteGroup,
 }
