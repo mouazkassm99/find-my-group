@@ -19,6 +19,7 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "mongodb": "^3.6.3",
+    "mongoose": "^5.11.13",
     "morgan": "~1.9.1",
     "regenerator-runtime": "^0.13.7"
   },
@@ -42,11 +43,11 @@
       "*.spec.js"
     ]
   },
-  "plugins":[
+  "plugins": [
     "@babel/plugin-transform-runtime",
-      {
-        "regenerator": true
-      },
+    {
+      "regenerator": true
+    },
     "@babel/preset-env"
   ]
 }

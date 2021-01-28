@@ -1,16 +1,19 @@
+import { findAll, insert, removeAll } from "../data-manager";
+
 async function getAllGroups(request){
-    console.log("gettin all queries");
-    var error = new Error('test err');
-    error.status = 404;
-    throw error;
+    return findAll();
 }
 
 async function postAllGroups(request){
-    console.log("postin all groups");
+    return insert({
+        owner:"mouaz",
+        full:false,
+
+    })
 }
 
 async function deleteAllGroups(request){
-    console.log("deletin all groups");
+    return removeAll()
 }
 
 

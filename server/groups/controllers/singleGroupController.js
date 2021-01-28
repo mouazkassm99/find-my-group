@@ -1,5 +1,8 @@
+import { findById, update } from "../data-manager";
+
 async function getGroup(request){
-    console.log("gettin a group");
+    const id = request.params.Id;
+    return findById(id)
 }
 
 async function postGroup(request){
@@ -11,7 +14,9 @@ async function deleteGroup(request){
 }
 
 async function editGroup(request){
-    console.log("edittin a group");
+    const id = request.params.Id;
+    const info = request.body;
+    return update(id, info);
 }
 
 
