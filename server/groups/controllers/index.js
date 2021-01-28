@@ -3,8 +3,8 @@ import { deleteAllGroups, getAllGroups, postAllGroups } from "./allGroupsConroll
 import {
     getGroup,
     postGroup,
-    editGroup,
-    deleteGroup
+    deleteGroup,
+    updateGroup
 } from './singleGroupController'
 
 
@@ -87,7 +87,7 @@ function groupController(req, res) {
             break;
 
         case 'PUT':
-            editGroup(parsedRequest)
+            updateGroup(parsedRequest)
             .then((result)=>{
                 res.status(200).json(result);
             })

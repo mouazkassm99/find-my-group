@@ -1,28 +1,29 @@
-import { findById, update } from "../data-manager";
+import { removeGroup, lookForGroup, editGroup } from "../use-case";
 
 async function getGroup(request){
     const id = request.params.Id;
-    return findById(id)
+    return lookForGroup(id);
 }
 
 async function postGroup(request){
-    console.log("postin a group");
+    // return addGroup(request.body)
 }
 
 async function deleteGroup(request){
-    console.log("deletin a group");
+    const id = request.params.Id;
+    return removeGroup(id);
 }
 
-async function editGroup(request){
+async function updateGroup(request){
     const id = request.params.Id;
     const info = request.body;
-    return update(id, info);
+    return editGroup(id, info);
 }
 
 
 export{
     getGroup,
     postGroup,
-    editGroup,
+    updateGroup,
     deleteGroup,
 }

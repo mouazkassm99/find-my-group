@@ -1,19 +1,17 @@
-import { findAll, insert, removeAll } from "../data-manager";
+import { addGroup, listGroups, removeAllGroups } from "../use-case";
+
 
 async function getAllGroups(request){
-    return findAll();
+    const full = request.body.full;
+    return listGroups({full: full ? full : false});
 }
 
 async function postAllGroups(request){
-    return insert({
-        owner:"mouaz",
-        full:false,
-
-    })
+    return addGroup(request.body);
 }
 
 async function deleteAllGroups(request){
-    return removeAll()
+    return removeAllGroups();
 }
 
 

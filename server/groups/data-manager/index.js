@@ -1,31 +1,28 @@
 import mongoose from 'mongoose';
-import { async } from 'regenerator-runtime';
-import { getGroup } from '../controllers/singleGroupController';
 import Group from './groupModel';
 
 
-export{
-    findAll,
-    insert,
-    removeAll,
-    findById,
-    update
-}
-// findAll,
-//         findById,
-//         findBySubjects,
-//         findByMembers,
-//         insert,
-//         remove,
-//         update,
+export default function makeDBManager(){
+    return Object.freeze({
+        findById,
+        // findBySubjects,
+        // findByMembers,
+        findAll,
+        insert,
+        removeAll,
+        removeById,
+        update
+    })
+};
 
 async function findAll({full = false} = {}){
     await connectToDB();
     let groups = null;
     try{
-        groups = await Group.find({});
+        groups = await Group.find({full:full});
     }catch(err){
-        throw err;
+        console.log("error:");
+        console.table(err);
     }
     return groups;
 }
@@ -45,11 +42,28 @@ async function insert(groupInfo){
 
 async function removeAll(){
     await connectToDB();
-    Group.remove({}, (err)=>{
-        if(err){
-            console.table(err);
-        }
-    });
+    let deleted = null;
+    try{
+   
+        deleted = await Group.deleteMany();
+    }catch(err){
+        console.log("error:");
+        console.table(err);
+    }
+    return deleted
+}
+async function removeById(id){
+    await connectToDB();
+
+    let group = null;
+    try{
+        group = await Group.findByIdAndRemove(id);
+    }catch(err){
+        console.log("error:");
+        console.table(err);
+    }
+    return group;
+
 }
 
 async function findById(id){
