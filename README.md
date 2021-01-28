@@ -1,4 +1,5 @@
 # find-my-group
 
-This repo contains a subsystem that adds groups to a nosql database
-using CLEAN architecture.
+A group management system using CLEAN Architecture (by Uncle Bob).
+
+using express js framework and mongoose as database tool.
