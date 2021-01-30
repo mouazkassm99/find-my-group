@@ -1,6 +1,8 @@
-import { groupController, groupsController} from "./controllers";
+import { groupController, groupsController, groupMembersController, groupSubjectsController} from "./controllers";
 
 export {
     groupController,
     groupsController,
+    groupMembersController,
+    groupSubjectsController
 }

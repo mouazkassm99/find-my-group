@@ -1,7 +1,8 @@
 import parseHttpRequest from "../helpers/requestParser";
 import { deleteAllGroups, getAllGroups, postAllGroups } from "./allGroupsConroller";
-import { getGroup, deleteGroup, updateGroup
-} from './singleGroupController'
+import { deleteMember, getMembers, postMember } from "./groupMembersController";
+import { deleteSubject, getSubjectsOfGroup, postSubjectToGroup } from "./groupSubjectsController";
+import { getGroup, deleteGroup, updateGroup } from './singleGroupController'
 
 
 
@@ -91,9 +92,97 @@ function groupController(req, res) {
     }
 }
 
+
+function groupMembersController(req, res) {
+    const parsedRequest = parseHttpRequest(req);
+    console.table(parsedRequest);
+    
+    switch(parsedRequest.method){
+        case 'GET':
+            getMembers(parsedRequest)
+            .then((result)=>{
+                res.status(200).json(result)
+            })
+            .catch(err=>{
+                res.status(404).json({ message: err.message, status: err.status })
+            });
+            break;
+        case 'POST':
+            postMember(parsedRequest)
+            .then((result)=>{
+                res.status(201).json(result);
+            })
+            .catch(err=>{
+                res.status(404).json({ message: err.message, status: err.status })
+
+            });
+            break;
+        case 'DELETE':
+            deleteMember(parsedRequest)
+            .then((result)=>{
+                res.status(200).json(result);
+            })
+            .catch(err=>{
+                res.status(404).json({ message: err.message, status: err.status })
+
+            })
+            break;
+        default:
+            res.status(501).json({ message: 'operation is not supported' });
+            break;
+    }
+    
+}
+
+
+
+function groupSubjectsController(req, res) {
+    const parsedRequest = parseHttpRequest(req);
+    console.table(parsedRequest);
+    
+    switch(parsedRequest.method){
+        case 'GET':
+            getSubjectsOfGroup(parsedRequest)
+            .then((result)=>{
+                res.status(200).json(result)
+            })
+            .catch(err=>{
+                res.status(404).json({ message: err.message, status: err.status })
+            });
+            break;
+        case 'POST':
+            postSubjectToGroup(parsedRequest)
+            .then((result)=>{
+                res.status(201).json(result);
+            })
+            .catch(err=>{
+                res.status(404).json({ message: err.message, status: err.status })
+
+            });
+            break;
+        case 'DELETE':
+            deleteSubject(parsedRequest)
+            .then((result)=>{
+                res.status(200).json(result);
+            })
+            .catch(err=>{
+                res.status(404).json({ message: err.message, status: err.status })
+
+            })
+            break;
+        default:
+            res.status(501).json({ message: 'operation is not supported' });
+            break;
+    }
+    
+}
+
+
 export {
     groupController,
     groupsController,
+    groupMembersController,
+    groupSubjectsController,
 }
 
 

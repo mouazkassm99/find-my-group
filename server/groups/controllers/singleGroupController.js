@@ -1,4 +1,5 @@
 import { removeGroup, lookForGroup, editGroup } from "../use-case";
+import {addMember} from '../use-case/edit-members';
 
 async function getGroup(request){
     const id = request.params.Id;
@@ -15,6 +16,8 @@ async function updateGroup(request){
     const info = request.body;
     return editGroup(id, info);
 }
+
+
 
 
 export{
